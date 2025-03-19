@@ -1306,6 +1306,7 @@ grafana:
     dashboards:
       enabled: true
       label: grafana_dashboard
+      path: /etc/grafana/provisioning/dashboards
       labelValue: "1"
       # Allow discovery in all namespaces for dashboards
       searchNamespace: ALL
@@ -1323,6 +1324,7 @@ grafana:
           enabled: false
       provider:
         allowUiUpdates: false
+    
     datasources:
       enabled: true
       defaultDatasourceEnabled: true
@@ -1370,6 +1372,11 @@ grafana:
         uid: alertmanager
         handleGrafanaManagedAlerts: false
         implementation: prometheus
+  dashboards:
+    default:
+      dashboard1:
+        json: |
+          ${local.dashboard1}
 
   extraConfigmapMounts: []
   # - name: certs-configmap

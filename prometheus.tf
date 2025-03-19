@@ -10,3 +10,7 @@ resource "helm_release" "kube_prometheus_stack" {
     file("values.yaml")
   ]
 }
+
+locals {
+  dashboard1 = file("${path.module}/grafana-dashboards/test-dashboard-1742389917481.json")
+}
