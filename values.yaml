@@ -1372,11 +1372,6 @@ grafana:
         uid: alertmanager
         handleGrafanaManagedAlerts: false
         implementation: prometheus
-  dashboards:
-    default:
-      dashboard1:
-        json: |
-          ${local.dashboard1}
 
   extraConfigmapMounts: []
   # - name: certs-configmap

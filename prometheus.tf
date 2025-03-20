@@ -12,5 +12,16 @@ resource "helm_release" "kube_prometheus_stack" {
 }
 
 locals {
-  dashboard1 = file("${path.module}/grafana-templates/test-dashboard-1742389917481.json")
+  test-dashboard_json = file("grafana-templates/test-dashboard.json")
+}
+
+resource "kubernetes_config_map" "grafana_dashboards" {
+  metadata {
+    name      = "grafana-dashboards"
+    namespace = "monitoring"
+  }
+
+  data = {
+    "dashboard1.json" = local.test-dashboard_json
+  }
 }
