@@ -1373,11 +1373,24 @@ grafana:
         handleGrafanaManagedAlerts: false
         implementation: prometheus
 
-  extraConfigmapMounts: []
+  volumes:
+    - name: grafana-dashboards
+      configMap:
+        name: grafana-dashboards  # Name of your ConfigMap with the dashboards
+  volumeMounts:
+    - mountPath: /etc/grafana/provisioning/dashboards
+      name: grafana-dashboards
+
+  extraConfigmapMounts:
+    # - name: grafana-dashboards
+    #   mountPath: /etc/grafana/provisioning/dashboards
+    #   configMap: grafana-dashboards
+    #   readOnly: true
   # - name: certs-configmap
   #   mountPath: /etc/grafana/ssl/
   #   configMap: certs-configmap
   #   readOnly: true
+
 
   deleteDatasources: []
   # - name: example-datasource
