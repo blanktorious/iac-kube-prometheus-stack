@@ -6,6 +6,7 @@ resource "helm_release" "kube_prometheus_stack" {
   version    = "70.0.0"
   create_namespace = true
 
+
   values = [
     file("values.yaml")
   ]
@@ -19,6 +20,9 @@ resource "kubernetes_config_map" "grafana_dashboards" {
   metadata {
     name      = "grafana-dashboards"
     namespace = "monitoring"
+    labels = {
+      grafana_dashboard = "1"
+    }
   }
 
   data = {
